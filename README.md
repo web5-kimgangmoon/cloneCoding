@@ -22,3 +22,5 @@ next, framer-motion, swiper, react, tailwind, github
 - **2주차 목표 이후**: 주마다 2 section씩 반응형을 포함하여 코딩하기
 
 #### 25/03/18
+
+1. aside 완성.
