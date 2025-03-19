@@ -24,3 +24,8 @@ next, framer-motion, swiper, react, tailwind, github
 #### 25/03/18
 
 1. aside 완성.
+
+#### 25/03/19
+
+1. header 완성.
+2. aside, z-index 추가.

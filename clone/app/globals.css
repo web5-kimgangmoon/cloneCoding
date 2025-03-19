@@ -10,6 +10,7 @@ html {
 
 @theme {
   --breakpoint-xs: 0px;
+  --breakpoint-xl: 1440px;
 }
 
 @theme inline {
