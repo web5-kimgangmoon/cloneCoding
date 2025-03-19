@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const Menubar_r = () => {
   return (
-    <aside className="fixed top-0 right-0 w-[6rem] h-full border-l border-gray-300 lg:block xs:hidden">
+    <aside className="fixed top-0 right-0 w-[6rem] h-full border-l border-gray-300 xl:block xs:hidden z-50">
       <ul className="flex flex-col h-full text-center">
         <MenuList_text
           text={[
