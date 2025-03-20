@@ -148,6 +148,7 @@ const BottomHeader = () => {
       </nav>
       <motion.nav
         className="flex justify-center w-full bg-white overflow-hidden"
+        initial={{ height: 0 }}
         animate={{
           opacity: isHover ? 100 : 0,
           height: isHover ? "max-content" : 0,
@@ -195,7 +196,7 @@ const BottomHeader = () => {
             ],
           ].map((v, idx) => {
             return (
-              <li key={idx} className="text-center w-[11rem] p-4">
+              <li key={idx} className="text-center w-[9rem] p-4 no-wrap">
                 {<BottommSubMenuList v={v} />}
               </li>
             );
@@ -212,7 +213,7 @@ const BottomTitle = ({ v }: { v: string[]; isHover: boolean }) => {
       <Link href={v[1]}>
         <h2
           className={clsx(
-            "flex items-center justify-center w-[11rem] h-[63px] text-[1.05rem] font-semibold",
+            "flex items-center justify-center w-[9rem] h-[63px] text-[1.05rem] font-semibold",
             "hover:text-purple-600 transition-colors duration-300"
           )}
         >

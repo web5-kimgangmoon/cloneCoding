@@ -29,3 +29,7 @@ next, framer-motion, swiper, react, tailwind, github
 
 1. header 완성.
 2. aside, z-index 추가.
+
+#### 25/03/20
+
+1. header fix, 줄맞추기.
