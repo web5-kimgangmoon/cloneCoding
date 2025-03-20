@@ -33,3 +33,5 @@ next, framer-motion, swiper, react, tailwind, github
 #### 25/03/20
 
 1. header fix, 줄맞추기.
+2. header fix, subMenu의 p-4 -> py-4.
+3. 첫번째 section의 슬라이드 작성중.(issue 발생)

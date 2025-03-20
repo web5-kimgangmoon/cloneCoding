@@ -196,7 +196,7 @@ const BottomHeader = () => {
             ],
           ].map((v, idx) => {
             return (
-              <li key={idx} className="text-center w-[9rem] p-4 no-wrap">
+              <li key={idx} className="text-center w-[9rem] py-4 no-wrap">
                 {<BottommSubMenuList v={v} />}
               </li>
             );
