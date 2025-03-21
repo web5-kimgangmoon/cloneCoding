@@ -12,7 +12,12 @@
    2. pagination의 갯수가 양옆에 슬라이드 기능을 위해 추가한 요소들만큼 늘어났다.
    3. 양옆을 absoulte로 해주는 방법, pagination의 update시에 렌더링을 시도하는 방법 등을 시도해봤으나 실패했다.
    4. virtual slide를 시험해보는 중.(실패했다. 성능향상을 위한 슬라이드)
+   5. useSwiper 사용.
+
+      - https://github.com/nolimits4web/swiper/issues/5574
+      - 이전에 작성했던 코드 사용. calcBoundMove(calcBoundaryMove)
 
 # 해결
 
 1. tailwind를 설정해주는 global.css 파일에서 **@theme**에 **--breakpoint-[원하는 변수명]**을 추가했다.
+2. useSwiper를 이용함으로써 pagination을 좀 더 원하는대로 커스텀이 가능했다.

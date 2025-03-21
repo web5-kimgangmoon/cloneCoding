@@ -8,7 +8,7 @@
 
 ### 스택
 
-next, framer-motion, swiper, react, tailwind, github
+next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 
 ### 기타
 
@@ -35,3 +35,10 @@ next, framer-motion, swiper, react, tailwind, github
 1. header fix, 줄맞추기.
 2. header fix, subMenu의 p-4 -> py-4.
 3. 첫번째 section의 슬라이드 작성중.(issue 발생)
+
+#### 25/03/21
+
+1. 슬라이드 이슈 해결 및 section1(슬라이드) 완성.
+2. header의 반응형으로 인한 소형 모바일 환경에서 menu의 잘못된 height를 고침.
+3. page에서 반응형으로 인한 소형 모바일 환경에서의 잘못된 top-padding을 고침.
+4. @heroIcons/react 라이브러리 추가.

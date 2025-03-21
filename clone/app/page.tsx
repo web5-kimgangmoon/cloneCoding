@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
       <Menubar_r />
 
-      <div className="pt-[207px] sm:pt-[159px]">
+      <div className="pt-[207px] sm:pt-[159px] xs:pt-[69px]">
         <Section1 />
         <div className="w-full h-[40rem] bg-red-300"></div>
         <div className="w-full h-[40rem] bg-white"></div>

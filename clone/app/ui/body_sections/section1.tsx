@@ -1,280 +1,155 @@
-import {
-  Swiper,
-  SwiperClass,
-  SwiperRef,
-  SwiperSlide,
-  useSwiper,
-} from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {
-  Autoplay,
-  Controller,
-  Navigation,
-  Pagination,
-  Virtual,
-} from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
-import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { calc_bound } from "@/app/lib/calcBound";
-import { SwiperContainer } from "swiper/element";
-
-// export const Section1 = () => {
-//   const slide = useRef<SwiperRef | null>(null);
-
-//   const prevBtn = useId();
-//   const nextBtn = useId();
-
-//   const pages = useId();
-//   //   const [page, setPage] = useState<HTMLDivElement | null>(null);
-//   //   useLayoutEffect(() => {
-//   //     const test = document.createElement("div");
-//   //     test.textContent = "dejlqwe";
-//   //     test.classList = "bg-black w-10 h-10 z-10";
-//   //     slide.current!.swiper.navigation.nextEl() = (e) => {
-//   //       e.currentTarget.appendChild(test);
-//   //       console.log(e.currentTarget);
-//   //     };
-//   //     setPage(test);
-//   //   }, []);
-
-//   return (
-//     <section className="w-screen h-[450px] sm:[609px] bg-blue-300 relative cursor-pointer">
-//       <Swiper
-//         className="h-full"
-//         modules={[Pagination, Autoplay, Navigation]}
-//         pagination={{
-//           clickable: true,
-//           el: `#${pages}`,
-//           bulletClass: clsx(
-//             "w-8 h-8 bg-white transition-all"
-//             // "first:hidden first:absolute first:top-0 first:right-0",
-//             // "last:hidden last:absolute last:top-0 last:left-0"
-//           ),
-//           bulletActiveClass: "!bg-blue-300 !block !w-16",
-//           renderBullet: (index, className) => {
-//             return `<div class="${className}"></div>`;
-//           },
-//         }}
-//         // onPaginationUpdate={(swiper) => {
-//         //   if (swiper.realIndex === 0) swiper.setProgress();
-//         //   if (swiper.realIndex === 5) swiper.pagination.render();
-//         // }}
-//         navigation={{ prevEl: `#${prevBtn}`, nextEl: `#${nextBtn}` }}
-//         allowTouchMove={false}
-//         autoplay
-//         ref={slide}
-//         // onSlideChangeTransitionEnd={(swiper) => {
-//         //   if (swiper.realIndex === 0) swiper.slideTo(4, 0);
-//         //   if (swiper.realIndex === 5) swiper.slideTo(1, 0);
-//         // }}
-//         initialSlide={1}
-//         speed={300}
-//         slidesPerView={1}
-//         // loop
-//         freeMode={{ enabled: true }}
-//         slidesOffsetAfter={300}
-
-//       >
-//         {[
-//           ["/main_visual_interview.webp"],
-//           ["/main_visual_game.webp"],
-//           ["/main_visual_plan.webp"],
-//           ["/main_visual_youtube.webp"],
-//           ["/main_visual_interview.webp"],
-//           ["/main_visual_game.webp"],
-//         ].map((v, idx) => (
-//           <SwiperSlide virtualIndex={}>
-//             <Image
-//               src={v[0]}
-//               alt={v[0].split("/")[1]}
-//               fill
-//               style={{ objectFit: "cover" }}
-//               key={idx}
-//             />
-//           </SwiperSlide>
-//         ))}
-//       </Swiper>
-//       <button
-//         onClick={() => {
-//           if (slide.current!.swiper.autoplay.paused)
-//             slide.current!.swiper.autoplay.resume();
-//           else slide.current!.swiper.autoplay.pause();
-//         }}
-//       >
-//         ㅇㅇ
-//       </button>
-//       <button
-//         className="flex justify-center items-center font-[swipe] h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:left-[10%] left-[5%] after:content-['prev'] font-bold bg-white rounded-full z-10 nextBtn"
-//         style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
-//         id={prevBtn}
-//       />
-//       <button
-//         className="flex justify-center items-center font-[swipe] h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:right-[10%] right-[5%] after:content-['next'] font-bold bg-white rounded-full z-10"
-//         style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
-//         id={nextBtn}
-//       />
-//       <div className="h-8 w-64 absolute bottom-0 left-0 z-10">
-//         <div className="relative flex gap-8 w-full h-full" id={pages}></div>
-//         {/* {[1, 2, 3, 4].map((v, idx) => (
-//           <div
-//             key={idx}
-//             className={clsx("w-8 h-8 cursor-pointer", {
-//               "bg-blue-300":
-//                 v === (slide.current ? slide.current!.swiper.activeIndex : 1),
-//             })}
-//             onClick={() =>
-//               slide.current!.swiper.animating ||
-//               slide.current!.swiper.slideTo(v, 300)
-//             }
-//           ></div>
-//         ))} */}
-//       </div>
-//     </section>
-//   );
-// };
+import { calcBound, calcBoundMove } from "@/app/lib/calcBound";
+import { PauseIcon, PlayIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export const Section1 = () => {
   const slides = [
-    ["/main_visual_interview.webp"],
-    ["/main_visual_game.webp"],
-    ["/main_visual_plan.webp"],
-    ["/main_visual_youtube.webp"],
-    ["/main_visual_interview.webp"],
-    ["/main_visual_game.webp"],
+    ["/main_visual_game.webp", "/m_main_visual_game.webp", "#"],
+    ["/main_visual_plan.webp", "/m_main_visual_plan.webp", "#"],
+    ["/main_visual_youtube.webp", "/m_main_visual_youtube.webp", "#"],
+    ["/main_visual_interview.webp", "/m_main_visual_interview.webp", "#"],
+    ["/main_visual_game.webp", "/m_main_visual_game.webp", "#"],
+    ["/main_visual_plan.webp", "/m_main_visual_plan.webp", "#"],
+    ["/main_visual_youtube.webp", "/m_main_visual_youtube.webp", "#"],
+    ["/main_visual_interview.webp", "/m_main_visual_interview.webp", "#"],
+    ["/main_visual_game.webp", "/m_main_visual_game.webp", "#"],
+    ["/main_visual_plan.webp", "/m_main_visual_plan.webp", "#"],
+    ["/main_visual_youtube.webp", "/m_main_visual_youtube.webp", "#"],
+    ["/main_visual_interview.webp", "/m_main_visual_interview.webp", "#"],
   ];
 
-  const slider = useRef<SwiperRef | null>(null);
-
-  const prevBtn = useId();
-  const nextBtn = useId();
-
-  const pages = useId();
-
-  const [controlledSlider, setControlledSlider] = useState<SwiperClass | null>(
-    null
-  );
-
-  //   const [page, setPage] = useState<HTMLDivElement | null>(null);
-  //   useLayoutEffect(() => {
-  //     const test = document.createElement("div");
-  //     test.textContent = "dejlqwe";
-  //     test.classList = "bg-black w-10 h-10 z-10";
-  //     slide.current!.swiper.navigation.nextEl() = (e) => {
-  //       e.currentTarget.appendChild(test);
-  //       console.log(e.currentTarget);
-  //     };
-  //     setPage(test);
-  //   }, []);
-
   return (
-    <section className="w-screen h-[450px] sm:[609px] bg-blue-300 relative cursor-pointer">
+    <section
+      className={clsx(
+        "w-screen bg-blue-300 relative cursor-pointer",
+        "xs:h-[104.5vw] lg:h-[30vw] xl:!h-[450px]"
+      )}
+    >
       <Swiper
         className="h-full"
-        modules={[Pagination, Autoplay, Navigation, Controller]}
-        // pagination={{
-        //   clickable: true,
-        //   el: `#${pages}`,
-        //   bulletClass: clsx(
-        //     "w-8 h-8 bg-white transition-all"
-        //     // "first:hidden first:absolute first:top-0 first:right-0",
-        //     // "last:hidden last:absolute last:top-0 last:left-0"
-        //   ),
-        //   bulletActiveClass: "!bg-blue-300 !block !w-16",
-        //   renderBullet: (index, className) => {
-        //     return `<div class="${className}"></div>`;
-        //   },
-        // }}
-        // onPaginationUpdate={(swiper) => {
-        //   if (swiper.realIndex === 0) swiper.setProgress();
-        //   if (swiper.realIndex === 5) swiper.pagination.render();
-        // }}
-        // navigation={{ prevEl: `#${prevBtn}`, nextEl: `#${nextBtn}` }}
+        modules={[Pagination, Autoplay]}
         allowTouchMove={false}
         autoplay
-        ref={slider}
-        // onSlideChangeTransitionEnd={(swiper) => {
-        //   if (swiper.realIndex === 0) swiper.slideTo(4, 0);
-        //   if (swiper.realIndex === 5) swiper.slideTo(1, 0);
-        // }}
-        initialSlide={1}
-        speed={300}
+        onSlideChangeTransitionEnd={(swiper) => {
+          swiper.animating ||
+            swiper.slideTo(
+              calcBound(swiper.activeIndex, swiper.slides.length),
+              0
+            );
+          if (swiper.autoplay.paused) swiper.autoplay.resume();
+        }}
+        initialSlide={4}
+        speed={500}
         slidesPerView={1}
-        // loop
-        onSwiper={setControlledSlider}
       >
         {slides.map((v, idx) => (
           <SwiperSlide key={idx}>
-            <Image
-              src={v[0]}
-              alt={v[0].split("/")[1]}
-              fill
-              style={{ objectFit: "cover" }}
-            />
+            <Link href={v[2]} className="w-full h-full block">
+              <Image
+                src={v[0]}
+                alt={v[0].split("/")[1]}
+                fill
+                style={{ objectFit: "cover" }}
+                className="hidden lg:block"
+              />
+              <Image
+                src={v[1]}
+                alt={v[1].split("/")[1]}
+                fill
+                style={{ objectFit: "cover" }}
+                className="block lg:hidden"
+              />
+            </Link>
           </SwiperSlide>
         ))}
+        <Pages length={12} />
+        <Navi_btn />
       </Swiper>
-      <Swiper
-        modules={[Controller, Pagination, Navigation]}
-        className="h-[20vh]"
-        pagination={{
-          clickable: true,
-          el: `#${pages}`,
-          bulletClass: clsx(
-            "w-8 h-8 bg-white transition-all"
-            // "first:hidden first:absolute first:top-0 first:right-0",
-            // "last:hidden last:absolute last:top-0 last:left-0"
-          ),
-          bulletActiveClass: "!bg-blue-300 !block !w-16",
-          renderBullet: (index, className) => {
-            return `<div class="${className}"></div>`;
-          },
-        }}
-        navigation={{ prevEl: `#${prevBtn}`, nextEl: `#${nextBtn}` }}
-        // controller={{ control: controlledSlider }}
-      >
-        <SwiperSlide className="bg-black">ㅇㅇㅇ</SwiperSlide>
-        <SwiperSlide className="bg-blue-300">ㅇㅇㅇ</SwiperSlide>
-        <SwiperSlide className="bg-red-300">ㅇㅇㅇ</SwiperSlide>
-        <SwiperSlide className="bg-green-300">ㅇㅇㅇ</SwiperSlide>
-      </Swiper>
+    </section>
+  );
+};
+
+export const Pages = ({ length }: { length: number }) => {
+  const swiper = useSwiper();
+  const [page, setPage] = useState(4);
+  useEffect(() => {
+    swiper.on("slideChange", () => {
+      setPage(calcBound(swiper.activeIndex, swiper.slides.length));
+    });
+  }, []);
+  return (
+    <div
+      className={clsx(
+        "flex gap-4 w-max absolute bottom-[5rem] left-[1.5rem] z-10",
+        "xl:left-[calc(50%-600px)]"
+      )}
+    >
+      {Array.from({ length: length / 3 }, (v, i) => {
+        return i + length / 3;
+      }).map((v, idx) => (
+        <button
+          key={idx}
+          className={`w-4 h-4 cursor-pointer bg-white rounded-full transition-all duration-500 ${
+            v === page ? "!bg-indigo-600 w-12" : ""
+          }`}
+          onClick={() => {
+            if (!swiper.animating) {
+              const result = calcBoundMove(
+                page,
+                v,
+                length / 3,
+                (length / 3) * 2 - 1
+              );
+              swiper.slideTo(result[0], result[1] * 500);
+            }
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+export const Navi_btn = () => {
+  const swiper = useSwiper();
+  const [isRunning, setIsRunning] = useState(true);
+
+  useEffect(() => {
+    swiper.on("autoplayStart", () => setIsRunning(true));
+    swiper.on("autoplayStop", () => setIsRunning(false));
+  }, []);
+  return (
+    <>
       <button
+        className={clsx(
+          "absolute bottom-[3.25rem] left-[1.5rem] w-[1.2rem] h-[1.2rem] text-white cursor-pointer z-10",
+          "xl:left-[calc(50%-600px)]"
+        )}
         onClick={() => {
-          if (slider.current!.swiper.autoplay.paused)
-            slider.current!.swiper.autoplay.resume();
-          else slider.current!.swiper.autoplay.pause();
+          if (isRunning) swiper.autoplay.stop();
+          else swiper.autoplay.start();
         }}
       >
-        ㅇㅇ
+        <PlayIcon strokeWidth={3} className={clsx(isRunning && "hidden")} />
+        <PauseIcon strokeWidth={3} className={clsx(isRunning || "hidden")} />
       </button>
       <button
         className="flex justify-center items-center font-[swipe] h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:left-[10%] left-[5%] after:content-['prev'] font-bold bg-white rounded-full z-10 nextBtn"
         style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
-        id={prevBtn}
+        onClick={() => swiper.animating || swiper.slidePrev(500)}
       />
       <button
         className="flex justify-center items-center font-[swipe] h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:right-[10%] right-[5%] after:content-['next'] font-bold bg-white rounded-full z-10"
         style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
-        id={nextBtn}
+        onClick={() => swiper.animating || swiper.slideNext(500)}
       />
-      <div className="h-8 w-64 absolute bottom-0 left-0 z-10">
-        <div className="relative flex gap-8 w-full h-full" id={pages}></div>
-        {/* {[1, 2, 3, 4].map((v, idx) => (
-            <div
-              key={idx}
-              className={clsx("w-8 h-8 cursor-pointer", {
-                "bg-blue-300":
-                  v === (slide.current ? slide.current!.swiper.activeIndex : 1),
-              })}
-              onClick={() =>
-                slide.current!.swiper.animating ||
-                slide.current!.swiper.slideTo(v, 300)
-              }
-            ></div>
-          ))} */}
-      </div>
-    </section>
+    </>
   );
 };

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { easeIn, motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import clsx from "clsx";
 import { Arrow } from "@/public/arrow";
 
@@ -308,7 +308,7 @@ const BottomHeader_sm = ({ isOpenMenu_sm }: { isOpenMenu_sm: boolean }) => {
         opacity: isOpenMenu_sm ? 100 : 0,
       }}
     >
-      <nav className="w-full bg-white h-[calc(100vh-144px)] sm:h-[calc(100vh-96px)]">
+      <nav className="w-full bg-white h-[calc(100vh-144px)] sm:h-[calc(100vh-96px)] xs:h-[calc(100vh-69px)]">
         <ul className="h-max w-full">
           {menu.map((v, idx) => {
             return (
