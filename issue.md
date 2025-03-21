@@ -2,6 +2,7 @@
 
 1. tailwindcss 공식문서를 아무리 뒤져봐도 이전에 확인했던 방법, container의 사이즈 커스텀이 나오지 않았다.
 2. 브라우저 사이즈를 resize하자 그정도가 작은 경우에는 문제가 없었지만, 심해지면 양옆의 슬라이드들이 삐져나왔다.
+3. 클론코딩한 사이트의 font가 유료 사이트나 아니면 따로 복잡한 절차없이 라이브러리 상에서 쉽게 구할 수 있는 font라는 사실을 눈치챘다.
 
 # 경과
 
@@ -17,7 +18,10 @@
       - https://github.com/nolimits4web/swiper/issues/5574
       - 이전에 작성했던 코드 사용. calcBoundMove(calcBoundaryMove)
 
+3. font를 npm으로 설치하고 공식문서 상에 적힌대로 시도해봤자 소용이 없었다.
+
 # 해결
 
 1. tailwind를 설정해주는 global.css 파일에서 **@theme**에 **--breakpoint-[원하는 변수명]**을 추가했다.
 2. useSwiper를 이용함으로써 pagination을 좀 더 원하는대로 커스텀이 가능했다.
+3. 파일탐색기로 node_modules에 존재하는 폰트의 경로를 찾고, 그 경로와 연결시켜줬다. 공식문서상에선 ./fonts/ 경로로 지정되어 있지만, linux 환경이거나 아니면 직접 font를 다운받은 경우를 고려하여 작성한 것으로 보인다.

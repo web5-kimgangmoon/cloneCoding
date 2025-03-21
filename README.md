@@ -42,3 +42,5 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 2. header의 반응형으로 인한 소형 모바일 환경에서 menu의 잘못된 height를 고침.
 3. page에서 반응형으로 인한 소형 모바일 환경에서의 잘못된 top-padding을 고침.
 4. @heroIcons/react 라이브러리 추가.
+5. font 라이브러리 발견, pretendard 폰트로 변경.
+6. section_2 작성중.
