@@ -44,3 +44,9 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 4. @heroIcons/react 라이브러리 추가.
 5. font 라이브러리 발견, pretendard 폰트로 변경.
 6. section_2 작성중.
+
+#### 25/03/22
+
+1. section_2 작성중.
+2. inview 애니메이션 이슈 발생 및 해결.
+3. 요소의 height 이슈 발생 및 해결.
