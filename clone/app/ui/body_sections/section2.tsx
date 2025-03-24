@@ -1,17 +1,16 @@
 import Image from "next/image";
-import { CenterContainer_article } from "../public";
+import { CenterContainer, CenterContainer_article } from "../public";
 import clsx from "clsx";
 import Link from "next/link";
 import {
   ChevronDoubleRightIcon,
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
-import useInViewAnime, { useInViewAnime_p } from "@/app/hooks/useInViewAnime";
-import { motion } from "motion/react";
-import { useRef, useState } from "react";
+import { useInViewAnime_p } from "@/app/hooks/useInViewAnime";
+import { useId, useRef, useState } from "react";
 
 export const Section2 = () => {
   return (
@@ -83,24 +82,24 @@ export const Article_2 = () => {
   const [isRunning, setIsRunning] = useState(false);
   const target = useRef<HTMLHeadingElement | null>(null);
   useInViewAnime_p(target, setIsRunning, {
-    bottomMargin_enter: 0,
-    bottomMargin_leave: 0,
-    exposeRatio_enter: 0,
-    exposeRatio_leave: 0,
+    bottomMargin: 0,
+    exposeRatio: 0,
   });
   return (
     <CenterContainer_article className="py-32 relative">
       <h2 className="text-center text-lg text-indigo-600 font-bold">
         KYUNGIL COURSE
       </h2>
-      <motion.h1
+      <h1
         ref={target}
-        initial={{ translateY: 100 }}
-        animate={{ translateY: isRunning ? 0 : 100 }}
-        className="pt-8 pb-12 text-center text-[2.75rem] font-extrabold break-keep leading-14"
+        style={{
+          translate: isRunning ? "0px 0%" : "0px 100%",
+          opacity: isRunning ? 1 : 0,
+        }}
+        className="pt-8 pb-12 text-center text-[2.75rem] font-extrabold break-keep leading-14 transition-all duration-[800ms]"
       >
         능력으로 인정 받는 슈퍼신입으로 만들어드립니다.
-      </motion.h1>
+      </h1>
       {/* <Title_section /> */}
       <div className="flex gap-6 w-full h-88">
         <div className="w-full flex-[1] p-12 from-indigo-600 to-violet-400 bg-gradient-to-br rounded-3xl">
@@ -206,19 +205,73 @@ const ChevronRight = () => {
 };
 
 const Article_3 = () => {
-  return (
-    <CenterContainer_article className="h-fit py-32 relative">
-      <h2 className="text-center text-lg text-indigo-600 font-bold">
-        KYUNGIL VIDEO
-      </h2>
-      <h1 className="text-center text-[2.75rem] font-extrabold break-keep leading-14">
-        단순히 취업을 넘어
-      </h1>
-      <small className="text-gray-600 text-sm text-center pb-16">
-        깊이 있는 게임제작자를 육성하는 고민에서 출발하였습니다.
-      </small>
+  const nextId = useId();
+  const prevId = useId();
+  // const sliderId = useId();
 
-      <Swiper className="w-full h-full">
+  const target = useRef<(HTMLDivElement & SwiperRef) | null>(null);
+  const [isRunning, setIsRunning] = useState(false);
+
+  // const [scope, animate] = useAnimate<HTMLDivElement & SwiperRef>();
+
+  useInViewAnime_p(
+    target,
+    setIsRunning,
+    // (is: boolean) =>
+    //   is
+    //     ? animate(`#${sliderId}`, { translate: "0px 100px", opacity: 1 })
+    //     : animate(`#${sliderId}`, { translate: "0px 0px", opacity: 0 }),
+    {
+      bottomMargin: 0,
+      exposeRatio: 0.3,
+    }
+  );
+
+  return (
+    <article
+      className="flex flex-col h-[480px] sm:h-[700px] lg:h-[750px] xl:h-fit py-[60px] relative"
+      // ref={scope}
+    >
+      <CenterContainer className="h-fit relative">
+        <h2 className="text-center sm:text-lg text-sm text-indigo-600 font-bold">
+          KYUNGIL VIDEO
+        </h2>
+        <h1 className="text-center sm:text-[2.75rem] text-[1.6rem] font-extrabold break-keep sm:leading-14 leading-9">
+          단순히 취업을 넘어
+        </h1>
+        <small className="text-gray-600 text-sm text-center sm:pb-16 pb-8 pt-4">
+          깊이 있는 게임제작자를 육성하는 고민에서 출발하였습니다.
+        </small>
+      </CenterContainer>
+      <Swiper
+        className="relative w-full h-full transition-all"
+        modules={[Pagination, Navigation]}
+        navigation={{ prevEl: `#${prevId}`, nextEl: `#${nextId}` }}
+        pagination={{
+          horizontalClass: "slide_horizon",
+          bulletClass: "w-3 h-3 rounded-full bg-gray-300 transition-colors",
+          bulletActiveClass: "!bg-violet-500",
+          renderBullet: (index, className) => {
+            return `<div class="${className}"></div>`;
+          },
+          type: "bullets",
+        }}
+        loop
+        spaceBetween={200}
+        slidesPerView={"auto"}
+        centeredSlides
+        style={{
+          paddingBottom: 50,
+          translate: isRunning ? "0px 0%" : "0px 100%",
+          opacity: isRunning ? 1 : 0,
+          transitionDuration: "3000ms",
+          transitionTimingFunction: "ease",
+        }}
+        slideActiveClass="swiper-slide-active"
+        initialSlide={0}
+        // id={sliderId}
+        ref={target}
+      >
         {[
           ["/kivideo01.webp", "#"],
           ["/kivideo02.webp", "#"],
@@ -227,28 +280,35 @@ const Article_3 = () => {
           ["/kivideo05.webp", "#"],
           ["/kivideo06.webp", "#"],
         ].map((v, idx) => (
-          <SwiperSlide key={idx}>
-            <Link href={v[1]} className="block relative aspect-video">
+          <SwiperSlide key={idx} className="swiper-slide_custom">
+            <Link
+              href={v[1]}
+              className="
+              inline-block relative aspect-video xl:w-[900px] lg:w-[500px] sm:w-[380px] w-full h-full rounded-[1rem] overflow-hidden"
+            >
+              <Image src={v[0]} alt={v[0].split("/")[1]} fill />
               <Image
-                src={v[0]}
-                alt={v[0].split("/")[1]}
-                fill
+                src={"/purpleplaybutton.png"}
+                alt={"purpleplaybutton.png"}
+                width={47}
+                height={47}
                 style={{ objectFit: "cover" }}
+                className="absolute block top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]"
               />
-              <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-                <Image
-                  src={"/purpleplaybutton.png"}
-                  alt={"purpleplaybutton.png"}
-                  width={47}
-                  height={47}
-                  style={{ objectFit: "cover" }}
-                  className=""
-                />
-              </div>
             </Link>
           </SwiperSlide>
         ))}
+        <button
+          className="flex justify-center items-center h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:left-[30%] lg:left-[24%] sm:left-[15%] left-[16%] after:content-['prev'] text-lg font-bold bg-purple-200 rounded-full z-10"
+          style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
+          id={prevId}
+        />
+        <button
+          className="flex justify-center items-center h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:right-[30%] lg:right-[24%] sm:right-[15%] right-[16%] after:content-['next'] text-lg font-bold bg-purple-200 rounded-full z-10"
+          style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
+          id={nextId}
+        />
       </Swiper>
-    </CenterContainer_article>
+    </article>
   );
 };

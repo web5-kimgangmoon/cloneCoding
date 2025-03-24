@@ -141,12 +141,12 @@ export const Navi_btn = () => {
         <PauseIcon strokeWidth={3} className={clsx(isRunning || "hidden")} />
       </button>
       <button
-        className="flex justify-center items-center font-[swipe] h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:left-[10%] left-[5%] after:content-['prev'] font-bold bg-white rounded-full z-10 nextBtn"
+        className="flex justify-center items-center h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:left-[10%] left-[5%] after:content-['prev'] font-bold bg-white rounded-full z-10"
         style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
         onClick={() => swiper.animating || swiper.slidePrev(500)}
       />
       <button
-        className="flex justify-center items-center font-[swipe] h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:right-[10%] right-[5%] after:content-['next'] font-bold bg-white rounded-full z-10"
+        className="flex justify-center items-center h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:right-[10%] right-[5%] after:content-['next'] font-bold bg-white rounded-full z-10"
         style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
         onClick={() => swiper.animating || swiper.slideNext(500)}
       />

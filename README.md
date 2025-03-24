@@ -16,6 +16,10 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 - 단, 일요일은 쉬며 진행상황을 올리지 않는다. 일요일이 아닌 날에 개인사정으로 진행을 못한 경우에는 날짜 밑에 간단한 사유를 적어 커밋한다.
 - issue는 issue.md 파일에 저장, 해결과정 또한 issue.md 파일에서 기재한다.
 
+- 25/03/24
+
+  swiper.css 커스텀했습니다.
+
 ### 코딩시작 - 25/3/18
 
 - **1주차 목표**: header와 오른쪽에 고정된 메뉴바 작성
@@ -50,3 +54,23 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 1. section_2 작성중.
 2. inview 애니메이션 이슈 발생 및 해결.
 3. 요소의 height 이슈 발생 및 해결.
+
+#### 25/03/24
+
+1. swiper.css 커스텀
+   .swiper-slide_custom {
+   width: 90%;
+   height: 80%;
+   opacity: 0.5;
+   margin: 0 auto;
+   transition-duration: 0.8s;
+   }
+   .swiper-slide-active {
+   height: 100%;
+   scale: 1;
+   transition-duration: 0.8s;
+   opacity: 1;
+   }
+2. useInViewAnime.ts 수정.
+3. motion-framer을 이용한 일부 애니메이션을 css transition으로 수정.
+4. slide 파트 완성.

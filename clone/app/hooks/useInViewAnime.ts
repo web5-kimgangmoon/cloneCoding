@@ -5,21 +5,14 @@ export type targetTy = RefObject<
 >;
 
 interface option {
-  bottomMargin_enter: number;
-  exposeRatio_enter: number;
-  bottomMargin_leave: number;
-  exposeRatio_leave: number;
+  bottomMargin: number;
+  exposeRatio: number;
 }
 
 export default function useInViewAnime(
   target: targetTy,
   setIsRunning: (set: boolean) => void,
-  {
-    bottomMargin_enter = 0,
-    exposeRatio_enter = 0,
-    bottomMargin_leave = 0,
-    exposeRatio_leave = 0,
-  }: option
+  { bottomMargin = 0, exposeRatio = 0 }: option
 ) {
   return useEffect(() => {
     const observer_enter = new IntersectionObserver(
@@ -27,17 +20,17 @@ export default function useInViewAnime(
         // if (
         //   e[0].isIntersecting &&
         //   (window.innerHeight - e[0].boundingClientRect.top >
-        //     target.current!.offsetHeight * exposeRatio_enter - 1 ||
+        //     target.current!.offsetHeight * exposeRatio - 1 ||
         //     window.innerHeight - e[0].boundingClientRect.top >
-        //       -bottomMargin_enter - 1)
+        //       -bottomMargin - 1)
         // ) {
         //   setIsRunning(true);
         // }
         if (e[0].isIntersecting) setIsRunning(true);
       },
       {
-        threshold: exposeRatio_enter,
-        rootMargin: `0px 0px ${bottomMargin_enter}px 0px`,
+        threshold: exposeRatio,
+        rootMargin: `0px 0px ${bottomMargin}px 0px`,
       }
     );
     const observer_leave = new IntersectionObserver(
@@ -45,15 +38,15 @@ export default function useInViewAnime(
         if (
           (!e[0].isIntersecting &&
             window.innerHeight - e[0].boundingClientRect.top <
-              target.current!.offsetHeight * exposeRatio_leave) ||
-          window.innerHeight - e[0].boundingClientRect.top < -bottomMargin_leave
+              target.current!.offsetHeight * exposeRatio) ||
+          window.innerHeight - e[0].boundingClientRect.top < -bottomMargin
         ) {
           setIsRunning(false);
         }
       },
       {
-        threshold: exposeRatio_leave,
-        rootMargin: `0px 0px ${bottomMargin_leave}px 0px`,
+        threshold: exposeRatio,
+        rootMargin: `0px 0px ${bottomMargin}px 0px`,
       }
     );
     observer_enter.observe(target.current!);
@@ -64,23 +57,19 @@ export default function useInViewAnime(
 export function useInViewAnime_p(
   target: targetTy,
   setIsRunning: (set: boolean) => void,
-  {
-    bottomMargin_enter = 0,
-    exposeRatio_enter = 0,
-    bottomMargin_leave = 0,
-    exposeRatio_leave = 0,
-  }: option
+  { bottomMargin = 0, exposeRatio = 0 }: option
 ) {
   return useEffect(() => {
-    const enterSize_ratio = -target.current!.offsetHeight * exposeRatio_enter;
-    const leaveSize_ratio = -target.current!.offsetHeight * exposeRatio_leave;
     const observer_enter = new IntersectionObserver(
       (e) => {
+        console.log(target.current!.offsetHeight);
         if (e[0].isIntersecting) setIsRunning(true);
       },
       {
         rootMargin: `0px 0px ${
-          -target.current!.offsetTop + enterSize_ratio + bottomMargin_enter
+          -target.current!.offsetTop -
+          target.current!.offsetHeight * exposeRatio +
+          bottomMargin
         }px 0px`,
       }
     );
@@ -89,14 +78,18 @@ export function useInViewAnime_p(
         if (
           !e[0].isIntersecting &&
           window.innerHeight - e[0].boundingClientRect.top <
-            target.current!.offsetTop - leaveSize_ratio - bottomMargin_leave
+            target.current!.offsetTop +
+              target.current!.offsetHeight * exposeRatio -
+              bottomMargin
         ) {
           setIsRunning(false);
         }
       },
       {
         rootMargin: `0px 0px ${
-          -target.current!.offsetTop + leaveSize_ratio + bottomMargin_leave
+          -target.current!.offsetTop -
+          target.current!.offsetHeight * exposeRatio +
+          bottomMargin
         }px 0px`,
       }
     );
