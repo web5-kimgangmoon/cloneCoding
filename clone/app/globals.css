@@ -5,6 +5,10 @@ html {
   scrollbar-width: none;
   scroll-behavior: smooth;
 }
+html::selection {
+  background-color: rgb(117, 65, 238);
+  color: white;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;

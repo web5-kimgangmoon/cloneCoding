@@ -53,3 +53,31 @@ export const CenterContainer_article = ({
     </article>
   );
 };
+
+export const CenterContainer_section = ({
+  children,
+  className,
+  className_wrapper,
+  ref,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  className_wrapper?: string;
+  ref?: Ref<HTMLElement | null>;
+}) => {
+  return (
+    <section
+      className={clsx("flex justify-center w-full", className)}
+      ref={ref}
+    >
+      <div
+        className={clsx(
+          "flex flex-col justify-center w-[90%] xl:w-[1200px]",
+          className_wrapper
+        )}
+      >
+        {children}
+      </div>
+    </section>
+  );
+};
