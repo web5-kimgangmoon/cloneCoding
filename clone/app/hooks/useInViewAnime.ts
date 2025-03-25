@@ -95,5 +95,10 @@ export function useInViewAnime_p(
     );
     observer_enter.observe(target.current!.parentElement!);
     observer_leave.observe(target.current!.parentElement!);
+
+    return () => {
+      observer_enter.disconnect();
+      observer_leave.disconnect();
+    };
   }, []);
 }
