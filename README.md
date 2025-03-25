@@ -79,3 +79,5 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 
 1. section2 완성
 2. useInViewAnime 잘못된 조건식 수정.
+3. selection css.
+4. section3 완성(간단한 구조)

@@ -165,7 +165,7 @@ const SmallBox = ({
 }) => {
   return (
     <Link href={"#"} className="relative block h-full grow">
-      <div className="flex flex-col justify-center items-center h-full p-4 sm:p-0 bg-gray-200 rounded-3xl select-none">
+      <div className="flex flex-col justify-center items-center h-full p-4 sm:p-0 bg-gray-200 rounded-3xl sm:select-none">
         <h3 className="flex items-center text-lg sm:text-2xl font-bold text-violet-600">
           <span className="pr-2">{title}</span>
           <ChevronRight isHiddenOp />
