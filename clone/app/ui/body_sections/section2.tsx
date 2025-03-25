@@ -14,7 +14,7 @@ import { useId, useRef, useState } from "react";
 
 export const Section2 = () => {
   return (
-    <section className="min-h-screen">
+    <section className="">
       <Article_1 />
       <Article_2 />
       <Article_3 />
@@ -82,12 +82,12 @@ export const Article_2 = () => {
   const [isRunning, setIsRunning] = useState(false);
   const target = useRef<HTMLHeadingElement | null>(null);
   useInViewAnime_p(target, setIsRunning, {
-    bottomMargin: 0,
+    bottomMargin: 30,
     exposeRatio: 0,
   });
   return (
-    <CenterContainer_article className="py-32 relative">
-      <h2 className="text-center text-lg text-indigo-600 font-bold">
+    <CenterContainer_article className="pt-16 sm:pt-32 pb-32 relative">
+      <h2 className="text-center sm:text-lg text-sm text-indigo-600 font-bold">
         KYUNGIL COURSE
       </h2>
       <h1
@@ -96,21 +96,20 @@ export const Article_2 = () => {
           translate: isRunning ? "0px 0%" : "0px 100%",
           opacity: isRunning ? 1 : 0,
         }}
-        className="pt-8 pb-12 text-center text-[2.75rem] font-extrabold break-keep leading-14 transition-all duration-[800ms]"
+        className="pt-4 pb-12 text-center sm:text-[2.75rem] text-[1.6rem] font-extrabold break-keep sm:leading-14 leading-9 transition-all duration-[800ms]"
       >
         능력으로 인정 받는 슈퍼신입으로 만들어드립니다.
       </h1>
       {/* <Title_section /> */}
-      <div className="flex gap-6 w-full h-88">
-        <div className="w-full flex-[1] p-12 from-indigo-600 to-violet-400 bg-gradient-to-br rounded-3xl">
-          <Link href={"#"} className="block w-max text-white">
-            <h3 className="w-max text-3xl font-bold leading-10">
-              현업 경력 10년 이상의 <br />
-              베테랑에게 배우는 실무
+      <div className="flex sm:flex-row flex-col gap-6 w-full h-88">
+        <div className="flex sm:flex-col w-full flex-[1] sm:p-12 p-6 from-indigo-600 to-violet-400 bg-gradient-to-br sm:text-left text-center rounded-3xl">
+          <Link href={"#"} className="block w-full text-white">
+            <h3 className="w-full sm:text-3xl text-lg sm:font-bold font-semibold sm:leading-10 leading-5">
+              현업 경력 10년 이상의
               <br />
-              중점 교육
+              베테랑에게 배우는 실무 중점 교육
             </h3>
-            <h4 className="w-max pt-3 font-[400]">
+            <h4 className="w-full pt-3 font-[400]">
               모집중인 강좌 보기
               <ChevronDoubleRightIcon
                 width={15}
@@ -120,7 +119,7 @@ export const Article_2 = () => {
             </h4>
           </Link>
         </div>
-        <div className="flex flex-col gap-8 w-full flex-[1.35] ">
+        <div className="flex sm:flex-col gap-8 w-full flex-[1.35] ">
           <SmallBox
             title="기획"
             line1="기획의 이해부터"
@@ -134,7 +133,7 @@ export const Article_2 = () => {
             imgPath="url('main_hover_unreal.png')"
           />
         </div>
-        <div className="flex flex-col gap-8 w-full flex-[1.35]">
+        <div className="flex sm:flex-col gap-8 w-full flex-[1.35]">
           <SmallBox
             title="프로그래밍"
             line1="상상만 했던 게임을"
@@ -165,19 +164,22 @@ const SmallBox = ({
   imgPath: string;
 }) => {
   return (
-    <Link href={"#"} className="relative block h-full">
-      <div className="h-full flex flex-col justify-center items-center bg-gray-200 rounded-3xl select-none">
-        <h3 className="flex items-center text-2xl font-bold text-violet-600">
+    <Link href={"#"} className="relative block h-full grow">
+      <div className="flex flex-col justify-center items-center h-full p-4 sm:p-0 bg-gray-200 rounded-3xl select-none">
+        <h3 className="flex items-center text-lg sm:text-2xl font-bold text-violet-600">
           <span className="pr-2">{title}</span>
-          <ChevronRight />
+          <ChevronRight isHiddenOp />
         </h3>
-        <p className="pt-1 text-xl text-center leading-5">
+        <p className="pt-1 text-sm sm:text-xl text-center sm:leading-5 leading-4">
           {line1}
           <br /> {line2}
         </p>
+        <h3 className="sm:hidden flex items-center pt-3 text-2xl font-bold text-violet-600">
+          <ChevronRight />
+        </h3>
       </div>
       <div
-        className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center rounded-3xl opacity-0 hover:opacity-100 text-white text-3xl font-extrabold"
+        className="absolute top-0 left-0 w-full h-full hidden sm:flex flex-col justify-center items-center rounded-3xl opacity-0 hover:opacity-100 text-white text-3xl font-extrabold"
         style={{
           backgroundImage: imgPath,
           backgroundPosition: "center",
@@ -191,9 +193,14 @@ const SmallBox = ({
   );
 };
 
-const ChevronRight = () => {
+const ChevronRight = ({ isHiddenOp }: { isHiddenOp?: boolean }) => {
   return (
-    <div className="p-[0.1rem] border border-violet-600 rounded-full">
+    <div
+      className={clsx(
+        "p-[0.1rem] border border-violet-600 rounded-full",
+        isHiddenOp && "hidden sm:block"
+      )}
+    >
       <ChevronRightIcon
         width={12}
         hanging={12}
@@ -222,14 +229,14 @@ const Article_3 = () => {
     //     ? animate(`#${sliderId}`, { translate: "0px 100px", opacity: 1 })
     //     : animate(`#${sliderId}`, { translate: "0px 0px", opacity: 0 }),
     {
-      bottomMargin: 0,
-      exposeRatio: 0.3,
+      bottomMargin: -60,
+      exposeRatio: 0,
     }
   );
 
   return (
     <article
-      className="flex flex-col h-[480px] sm:h-[700px] lg:h-[750px] xl:h-fit py-[60px] relative"
+      className="flex flex-col h-[480px] sm:h-[700px] lg:h-[750px] xl:h-fit sm:py-[120px] py-[60px] relative"
       // ref={scope}
     >
       <CenterContainer className="h-fit relative">
@@ -264,7 +271,7 @@ const Article_3 = () => {
           paddingBottom: 50,
           translate: isRunning ? "0px 0%" : "0px 100%",
           opacity: isRunning ? 1 : 0,
-          transitionDuration: "3000ms",
+          transitionDuration: "1500ms",
           transitionTimingFunction: "ease",
         }}
         slideActiveClass="swiper-slide-active"
@@ -299,16 +306,38 @@ const Article_3 = () => {
           </SwiperSlide>
         ))}
         <button
-          className="flex justify-center items-center h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:left-[30%] lg:left-[24%] sm:left-[15%] left-[16%] after:content-['prev'] text-lg font-bold bg-purple-200 rounded-full z-10"
+          className="flex justify-center items-center w-8 h-8 sm:w-12 sm:h-12  absolute top-[calc(50%-1.5rem)] xl:left-[30%] lg:left-[24%] sm:left-[15%] left-[16%] after:content-['prev'] text-sm sm:text-lg font-bold bg-purple-200 rounded-full z-10"
           style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
           id={prevId}
         />
         <button
-          className="flex justify-center items-center h-12 w-12 absolute top-[calc(50%-1.5rem)] xl:right-[30%] lg:right-[24%] sm:right-[15%] right-[16%] after:content-['next'] text-lg font-bold bg-purple-200 rounded-full z-10"
+          className="flex justify-center items-center w-8 h-8 sm:w-12 sm:h-12 absolute top-[calc(50%-1.5rem)] xl:right-[30%] lg:right-[24%] sm:right-[15%] right-[16%] after:content-['next'] text-sm sm:text-lg font-bold bg-purple-200 rounded-full z-10"
           style={{ fontFamily: "swiper-icons", cursor: "pointer" }}
           id={nextId}
         />
       </Swiper>
+      {/* <div className="absolute bottom-[50%] right-[15%] w-[33%] h-[33%] from-purple-100 to-blue-100 bg-gradient-to-br -z-10 rounded-[792px] rotate-z-[4.412deg] blur-3xl"></div> */}
+      <div
+        className="absolute bottom-[50%] right-[15%] w-[33%] h-[33%] -z-10 rounded-[792px] rotate-z-[4.412deg]"
+        style={{
+          backgroundImage:
+            "radial-gradient(50% 50% at 50% 50%, #EBDCFF 0%, rgba(255, 255, 255, 0.00) 100%)",
+        }}
+      ></div>
+      <div
+        className="absolute bottom-[0%] left-[15%] w-[20%] h-[80%] -z-10 rounded-[792px] rotate-z-[36.24deg]"
+        style={{
+          backgroundImage:
+            "radial-gradient(50% 50% at 50% 50%,rgb(220, 222, 255) 0%, rgba(255, 255, 255, 0.00) 100%)",
+        }}
+      ></div>
+      <div
+        className="absolute bottom-[40%] right-[5%] w-[33%] h-[33%] -z-10 rounded-[792px] rotate-z-[4.24deg]"
+        style={{
+          backgroundImage:
+            "radial-gradient(50% 50% at 50% 50%,rgb(220, 222, 255) 0%, rgba(255, 255, 255, 0.00) 100%)",
+        }}
+      ></div>
     </article>
   );
 };

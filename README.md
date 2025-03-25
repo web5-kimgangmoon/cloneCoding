@@ -74,3 +74,8 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 2. useInViewAnime.ts 수정.
 3. motion-framer을 이용한 일부 애니메이션을 css transition으로 수정.
 4. slide 파트 완성.
+
+#### 25/03/25
+
+1. section2 완성
+2. useInViewAnime 잘못된 조건식 수정.

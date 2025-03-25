@@ -62,7 +62,6 @@ export function useInViewAnime_p(
   return useEffect(() => {
     const observer_enter = new IntersectionObserver(
       (e) => {
-        console.log(target.current!.offsetHeight);
         if (e[0].isIntersecting) setIsRunning(true);
       },
       {
@@ -78,7 +77,8 @@ export function useInViewAnime_p(
         if (
           !e[0].isIntersecting &&
           window.innerHeight - e[0].boundingClientRect.top <
-            target.current!.offsetTop +
+            e[0].boundingClientRect.top +
+              target.current!.offsetTop +
               target.current!.offsetHeight * exposeRatio -
               bottomMargin
         ) {
