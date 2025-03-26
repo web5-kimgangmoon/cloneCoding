@@ -83,3 +83,5 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 4. section3 완성(간단한 구조)
 5. useInViewAnime, section1 componentWillUnmount 타이밍의 함수 추가.
 6. section4 작성 진행중.
+
+#### 25/03/26
