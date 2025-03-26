@@ -85,3 +85,7 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 6. section4 작성 진행중.
 
 #### 25/03/26
+
+1. section4 작성 완료
+2. section5 골조 완성
+3. section5 슬라이드 처음 loop 떄 속도가 느려지는 현상, 추가적인 수정 필요.

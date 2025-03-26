@@ -47,3 +47,22 @@ body {
   column-gap: 0.5rem;
   justify-content: center;
 }
+
+@keyframes upDown {
+  0% {
+    translate: 0px 0%;
+  }
+  50% {
+    translate: 0px 50px;
+  }
+  100% {
+    translate: 0px 0%;
+  }
+}
+
+.upDownAnime {
+  animation-name: upDown;
+  animation-timing-function: ease-in-out;
+  animation-duration: 6000ms;
+  animation-iteration-count: infinite;
+}

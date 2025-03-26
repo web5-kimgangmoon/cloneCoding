@@ -4,6 +4,7 @@ import { Section1 } from "./ui/body_sections/section1";
 import { Section2 } from "./ui/body_sections/section2";
 import Section3 from "./ui/body_sections/section3";
 import Section4 from "./ui/body_sections/section4";
+import { Section5 } from "./ui/body_sections/section5";
 import { Header } from "./ui/hader";
 import { Menubar_r } from "./ui/menubar_r";
 
@@ -17,6 +18,7 @@ export default function Home() {
         <Section2 />
         <Section3 />
         <Section4 />
+        <Section5 />
         <div className="w-full h-[40rem] bg-red-300"></div>
         <div className="w-full h-[40rem] bg-blue-300"></div>
       </div>
