@@ -81,9 +81,11 @@ export const Pages = ({ length }: { length: number }) => {
   const swiper = useSwiper();
   const [page, setPage] = useState(4);
   useEffect(() => {
-    swiper.on("slideChange", () => {
+    const change = () => {
       setPage(calcBound(swiper.activeIndex, swiper.slides.length));
-    });
+    };
+    swiper.on("slideChange", change);
+    return () => swiper.off("slideChange", change);
   }, []);
   return (
     <div

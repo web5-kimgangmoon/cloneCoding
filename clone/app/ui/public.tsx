@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { motion, useInView } from "motion/react";
 import { Ref, useCallback, useEffect, useId, useRef, useState } from "react";
 import useInViewAnime from "../hooks/useInViewAnime";
+import Link from "next/link";
 
 export const CenterContainer = ({
   children,
@@ -79,5 +80,29 @@ export const CenterContainer_section = ({
         {children}
       </div>
     </section>
+  );
+};
+
+export const Bottom_btn = ({
+  wrapper_cls,
+  cls,
+  href,
+}: {
+  cls?: string;
+  wrapper_cls?: string;
+  href: string;
+}) => {
+  return (
+    <div className={clsx("flex justify-center items-center", wrapper_cls)}>
+      <Link
+        href={href}
+        className={clsx(
+          "flex justify-center items-center bg-indigo-500 hover:bg-indigo-600 text-center text-sm sm:text-lg text-white font-bold rounded-4xl",
+          cls
+        )}
+      >
+        경일인터뷰 더보기
+      </Link>
+    </div>
   );
 };
