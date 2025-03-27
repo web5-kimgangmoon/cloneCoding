@@ -84,10 +84,12 @@ export const CenterContainer_section = ({
 };
 
 export const Bottom_btn = ({
+  children,
   wrapper_cls,
   cls,
   href,
 }: {
+  children: string;
   cls?: string;
   wrapper_cls?: string;
   href: string;
@@ -101,7 +103,7 @@ export const Bottom_btn = ({
           cls
         )}
       >
-        경일인터뷰 더보기
+        {children}
       </Link>
     </div>
   );
