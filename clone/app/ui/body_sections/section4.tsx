@@ -226,7 +226,9 @@ export default function Section4() {
           ))}
         </div>
       </div>
-      <Bottom_btn href="#" wrapper_cls="pt-12" cls="w-52 h-10 sm:h-16" />
+      <Bottom_btn href="#" wrapper_cls="pt-12" cls="w-52 h-10 sm:h-16">
+        경일인터뷰 더보기
+      </Bottom_btn>
     </CenterContainer_section>
   );
 }

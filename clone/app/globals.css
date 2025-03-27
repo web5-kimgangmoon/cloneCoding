@@ -60,9 +60,27 @@ body {
   }
 }
 
+@keyframes upDown_sm {
+  0% {
+    translate: 0px 0%;
+  }
+  50% {
+    translate: 0px 25px;
+  }
+  100% {
+    translate: 0px 0%;
+  }
+}
+
 .upDownAnime {
   animation-name: upDown;
   animation-timing-function: ease-in-out;
   animation-duration: 6000ms;
   animation-iteration-count: infinite;
+}
+
+@media screen and (max-width: 720px) {
+  .upDownAnime {
+    animation-name: upDown_sm;
+  }
 }
