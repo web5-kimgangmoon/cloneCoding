@@ -102,3 +102,62 @@ export function useInViewAnime_p(
     };
   }, []);
 }
+
+export function useInViewAnime_p_arr(
+  targets: targetTy[],
+  setIsRunning: (set: boolean) => void,
+  { bottomMargin = 0, exposeRatio = 0 }: option
+) {
+  return useEffect(() => {
+    const observers_enter: IntersectionObserver[] = [];
+    const observers_leave: IntersectionObserver[] = [];
+
+    targets.map((target, idx) => {
+      observers_enter.push(
+        new IntersectionObserver(
+          (e) => {
+            if (e[0].isIntersecting) setIsRunning(true);
+          },
+          {
+            rootMargin: `0px 0px ${
+              -target.current!.offsetTop -
+              target.current!.offsetHeight * exposeRatio +
+              bottomMargin
+            }px 0px`,
+          }
+        )
+      );
+      observers_leave.push(
+        new IntersectionObserver(
+          (e) => {
+            if (
+              !e[0].isIntersecting &&
+              window.innerHeight - e[0].boundingClientRect.top <
+                e[0].boundingClientRect.top +
+                  target.current!.offsetTop +
+                  target.current!.offsetHeight * exposeRatio -
+                  bottomMargin
+            ) {
+              setIsRunning(false);
+            }
+          },
+          {
+            rootMargin: `0px 0px ${
+              -target.current!.offsetTop -
+              target.current!.offsetHeight * exposeRatio +
+              bottomMargin
+            }px 0px`,
+          }
+        )
+      );
+      observers_enter[idx].observe(target.current!.parentElement!);
+      observers_leave[idx].observe(target.current!.parentElement!);
+    });
+    return () => {
+      targets.forEach((_, idx) => {
+        observers_enter[idx].disconnect();
+        observers_leave[idx].disconnect();
+      });
+    };
+  }, []);
+}

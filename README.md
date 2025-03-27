@@ -89,3 +89,9 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 1. section4 작성 완료
 2. section5 골조 완성
 3. section5 슬라이드 처음 loop 떄 속도가 느려지는 현상, 추가적인 수정 필요.
+
+### 25/03/27
+
+1. section5 완성.
+2. section6 작성중.(whitespace-pre-line으로 공백과 줄바꿈 유지, 데이터 변경 필요)
+3. useEffect를 한번만 호출하기 위해, 커스텀훅 useInViewAnime_p_arr 신규 작성.
