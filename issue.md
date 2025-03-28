@@ -6,6 +6,7 @@
 4. motion-framer를 이용한 inveiw 애니메이션 구현. 클론코딩 사이트에선 요소가 화면에 있음에도 애니메이션이 제자리로 돌아가게 구현되어 있었다.
 5. 원본 페이지에 상대적인 속성들만 가득(h-full, fit-content)한데, 어째선지 height가 0이 아니라 자리를 제대로 차지하고 있었다.
 6. 한 번의 view에 3개의 슬라이드가 보이면서 동시에 width의 style은 Swiper 컴포넌트가 임의로 지정하지 않도록 되어있었지만, 원본 페이지처럼 구현할 방법을 찾지 못했다. 무조건 width가 swiper 컴포넌트에 의해 임의적으로 지정되었다.
+7. hotfix 필요. inview로 구현한 애니메이션이 리사이즈시 제대로 동작하지 않았다.
 
 # 경과
 
@@ -30,6 +31,11 @@
 
 5. 원본 페이지에서 자식 속성과 부모 속성의 height 속성을 뒤져봤다.
 6. chatgpt에도 질문하고, 공식문서도 뒤져본 끝에 slidesPerView의 "auto" 값을 찾았다.
+7. 알고보니 참조하는 요소의 ref 객체가 업데이트되어도 그게 상태가 아니라서 업데이트 되지 않았다. 가능하면 inveiw 기능만으로 해결하고 싶었지만 문제가 많아 포기했다.
+
+   1. translateY가 동작하면서 inview의 기준 위치가 변함.
+   2. 애니메이션 도중에도 기준 위치가 변함.
+   3. 리사이즈시 업데이트 없음.
 
 # 해결
 
@@ -39,3 +45,6 @@
 4. IntersectionObserver와 useEffect를 조합해 조건을 각각 지정해주었다. 부모 요소를 기준으로 translateY를 지정해봤다.
 5. 결과적으로 height가 문제가 아니였지만, aspect-ratio 속성을 찾아냈고 해당 속성이 height에 영향을 준다는 사실을 발견했다.
 6. slidesPerView를 auto로 지정하고, slide의 width를 적절하게 지정하면 원본 페이지처럼 구현할 수 있었다.
+7. 결국 원본 페이지처럼 aos 라이브러리를 설치했다. 사소한 이슈(aos라이브러리의 css 파일 import 필요)는 해당 사이트에서 찾아 해결했다. aos 라이브러리 자체도 최적화가 되어있는지 그렇게 무겁진 않았고, inview 기능을 활용하기 위해 추가적인 훅들을 쓰지 않은 덕에 오히려 빨라졌다.
+
+   https://chaedies-dev-log.tistory.com/entry/Nextjs-Nextjs-%EC%97%90%EC%84%9C-aos-%EC%82%AC%EC%9A%A9%EB%B2%95-Animation-On-Scroll

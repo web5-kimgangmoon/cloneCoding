@@ -1,8 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Bottom_btn, CenterContainer_section } from "../public";
 import { Autoplay, EffectFade, Navigation } from "swiper/modules";
-import { useId, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { useId, useState } from "react";
 
 import clsx from "clsx";
 import Image from "next/image";
@@ -11,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import Link from "next/link";
-import useInViewAnime, { useInViewAnime_p } from "@/app/hooks/useInViewAnime";
+import "aos/dist/aos.css";
 
 export default function Section4() {
   const rightBox_data = [
@@ -135,26 +134,12 @@ export default function Section4() {
   const prevId = useId();
   const nextId = useId();
 
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
-  const sliderRef = useRef<HTMLDivElement | null>(null);
-
-  const [isTitle, setIsTitle] = useState(false);
-  const [isSlider, setIsSlider] = useState(false);
-
-  useInViewAnime_p(titleRef, setIsTitle, { bottomMargin: 0, exposeRatio: 0 });
-  useInViewAnime(sliderRef, setIsSlider, { bottomMargin: 0, exposeRatio: 0.3 });
   return (
     <CenterContainer_section className="py-16 sm:py-32 bg-gray-100 relative">
       <h1
         className="pb-16 text-center text-[1.6rem] sm:text-[2.8rem] font-extrabold"
-        style={{
-          transitionProperty: "translate, opacity",
-          transitionTimingFunction: "ease",
-          transitionDuration: "300ms",
-          opacity: isTitle ? 1 : 0,
-          translate: isTitle ? "0px 0px" : "0px 100px",
-        }}
-        ref={titleRef}
+        data-aos="fade-up"
+        data-aos-duration="1000"
       >
         경일에서 취업했어요!
       </h1>
@@ -177,14 +162,8 @@ export default function Section4() {
       <div className="flex flex-col lg:flex-row gap-6 lg:h-[520px]">
         <div
           className="bg-white shadow-xl rounded-xl w-full lg:w-[calc(100%/12*7)] lg:max-w-[700px] h-full p-4 sm:p-10"
-          style={{
-            transitionProperty: "translate, opacity",
-            transitionTimingFunction: "ease",
-            transitionDuration: "800ms",
-            opacity: isSlider ? 1 : 0,
-            translate: isSlider ? "0px 0px" : "-100px 0px",
-          }}
-          ref={sliderRef}
+          data-aos="fade-right"
+          data-aos-duration="1000"
         >
           <Swiper
             modules={[Autoplay, Navigation, EffectFade]}

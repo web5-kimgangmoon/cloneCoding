@@ -1,4 +1,3 @@
-import { useInViewAnime_p } from "@/app/hooks/useInViewAnime";
 import { StarIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Image from "next/image";
@@ -7,24 +6,17 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Bottom_btn } from "../public";
 
+import "aos/dist/aos.css";
+
 export function Section5() {
-  const [isRunning, setIsRunning] = useState(false);
-  const target = useRef<HTMLHeadingElement | null>(null);
-  useInViewAnime_p(target, setIsRunning, {
-    bottomMargin: 100,
-    exposeRatio: 0,
-  });
   return (
     <section className="relative flex flex-col py-24 bg-violet-400 ">
       <h2 className="text-center sm:text-lg text-sm text-white font-bold">
         KYUNGIL COURSE
       </h2>
       <h1
-        ref={target}
-        style={{
-          translate: isRunning ? "0px 0%" : "0px 100%",
-          opacity: isRunning ? 1 : 0,
-        }}
+        data-aos="fade-up"
+        data-duration="1000"
         className="pt-4 pb-12 text-center sm:text-[2.75rem] text-[1.6rem] text-white font-extrabold break-keep sm:leading-14 leading-9 transition-all duration-[800ms]"
       >
         여러분 선배들의 생생한 수강후기를 확인해보세요
@@ -123,7 +115,7 @@ const SlideContent = ({
           />
         </div>
       </div>
-      <div className="border-t-[15px] border-r-[15px] sm:border-t-[25px] sm:border-r-[25px] border-t-white border-r-transparent" />
+      <div className="border-t-[15px] border-r-[15px] sm:border-t-[25px] sm:border-r-[25px] border-t-white border-r-transparent -translate-y-[1px]" />
     </div>
   );
 };
