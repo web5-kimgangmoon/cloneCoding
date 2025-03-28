@@ -6,11 +6,11 @@ import {
   ChevronDoubleRightIcon,
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
-import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
-import { useInViewAnime_p } from "@/app/hooks/useInViewAnime";
-import { useId, useRef, useState } from "react";
+import { useId } from "react";
+import "aos/dist/aos.css";
 
 export const Section2 = () => {
   return (
@@ -79,28 +79,17 @@ export const Article_1 = () => {
 };
 
 export const Article_2 = () => {
-  const [isRunning, setIsRunning] = useState(false);
-  const target = useRef<HTMLHeadingElement | null>(null);
-  useInViewAnime_p(target, setIsRunning, {
-    bottomMargin: 30,
-    exposeRatio: 0,
-  });
   return (
     <CenterContainer_article className="pt-16 sm:pt-32 pb-32 relative">
       <h2 className="text-center sm:text-lg text-sm text-indigo-600 font-bold">
         KYUNGIL COURSE
       </h2>
       <h1
-        ref={target}
-        style={{
-          translate: isRunning ? "0px 0%" : "0px 100%",
-          opacity: isRunning ? 1 : 0,
-        }}
-        className="pt-4 pb-12 text-center sm:text-[2.75rem] text-[1.6rem] font-extrabold break-keep sm:leading-14 leading-9 transition-all duration-[800ms]"
+        className="pt-4 pb-12 text-center sm:text-[2.75rem] text-[1.6rem] font-extrabold break-keep sm:leading-14 leading-9"
+        data-aos="fade-up"
       >
         능력으로 인정 받는 슈퍼신입으로 만들어드립니다.
       </h1>
-      {/* <Title_section /> */}
       <div className="flex sm:flex-row flex-col gap-6 w-full h-88">
         <div className="flex sm:flex-col w-full flex-[1] sm:p-12 p-6 from-indigo-600 to-violet-400 bg-gradient-to-br sm:text-left text-center rounded-3xl">
           <Link href={"#"} className="block w-full text-white">
@@ -170,7 +159,7 @@ const SmallBox = ({
           <span className="pr-2">{title}</span>
           <ChevronRight isHiddenOp />
         </h3>
-        <p className="pt-1 text-sm sm:text-xl text-center sm:leading-5 leading-4">
+        <p className="pt-1 text-sm sm:text-xl text-center sm:leading-5 leading-4 break-keep">
           {line1}
           <br /> {line2}
         </p>
@@ -214,31 +203,8 @@ const ChevronRight = ({ isHiddenOp }: { isHiddenOp?: boolean }) => {
 const Article_3 = () => {
   const nextId = useId();
   const prevId = useId();
-  // const sliderId = useId();
-
-  const target = useRef<(HTMLDivElement & SwiperRef) | null>(null);
-  const [isRunning, setIsRunning] = useState(false);
-
-  // const [scope, animate] = useAnimate<HTMLDivElement & SwiperRef>();
-
-  useInViewAnime_p(
-    target,
-    setIsRunning,
-    // (is: boolean) =>
-    //   is
-    //     ? animate(`#${sliderId}`, { translate: "0px 100px", opacity: 1 })
-    //     : animate(`#${sliderId}`, { translate: "0px 0px", opacity: 0 }),
-    {
-      bottomMargin: -60,
-      exposeRatio: 0,
-    }
-  );
-
   return (
-    <article
-      className="flex flex-col h-[480px] sm:h-[700px] lg:h-[750px] xl:h-fit sm:py-[120px] py-[60px] relative"
-      // ref={scope}
-    >
+    <article className="flex flex-col h-[480px] sm:h-[700px] lg:h-[750px] xl:h-fit sm:py-[120px] py-[60px] relative">
       <CenterContainer className="h-fit relative">
         <h2 className="text-center sm:text-lg text-sm text-indigo-600 font-bold">
           KYUNGIL VIDEO
@@ -251,7 +217,7 @@ const Article_3 = () => {
         </small>
       </CenterContainer>
       <Swiper
-        className="relative w-full h-full transition-all"
+        className="relative w-full h-full transition-all pb-[50px]"
         modules={[Pagination, Navigation]}
         navigation={{ prevEl: `#${prevId}`, nextEl: `#${nextId}` }}
         pagination={{
@@ -267,17 +233,10 @@ const Article_3 = () => {
         spaceBetween={200}
         slidesPerView={"auto"}
         centeredSlides
-        style={{
-          paddingBottom: 50,
-          translate: isRunning ? "0px 0%" : "0px 100%",
-          opacity: isRunning ? 1 : 0,
-          transitionDuration: "1500ms",
-          transitionTimingFunction: "ease",
-        }}
+        data-aos="fade-up"
+        data-aos-duration="1000"
         slideActiveClass="swiper-slide-active"
         initialSlide={0}
-        // id={sliderId}
-        ref={target}
       >
         {[
           ["/kivideo01.webp", "#"],
