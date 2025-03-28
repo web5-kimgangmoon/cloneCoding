@@ -107,7 +107,7 @@ export const Section6 = () => {
     },
   ];
   return (
-    <CenterContainer_section className="bg-gray-100 py-32 relative">
+    <CenterContainer_section className="bg-gray-100 py-16 sm:py-32 relative">
       <small className="text-lg text-indigo-500 text-center font-bold">
         WHY? KYUNGIL
       </small>

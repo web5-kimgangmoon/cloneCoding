@@ -100,3 +100,4 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 
 1. section6 완성.
 2. hotfix, inview 애니메이션 수정함.
+3. section7 완성(애니메이션, 슬라이드 없는 간단한 구조)
