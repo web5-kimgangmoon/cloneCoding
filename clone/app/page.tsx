@@ -11,6 +11,7 @@ import { Header } from "./ui/hader";
 import { Menubar_r } from "./ui/menubar_r";
 import aos from "aos";
 import { Section7 } from "./ui/body_sections/section7";
+import { Section8 } from "./ui/body_sections/section8";
 
 export default function Home() {
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function Home() {
         <Section5 />
         <Section6 />
         <Section7 />
+        <Section8 />
         <div className="w-full h-[40rem] bg-red-300"></div>
         <div className="w-full h-[40rem] bg-blue-300"></div>
       </div>
