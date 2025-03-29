@@ -10,7 +10,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "clone",
+  title: "develrocket.com's clone",
   description: "clone coding develrocket.com",
 };
 

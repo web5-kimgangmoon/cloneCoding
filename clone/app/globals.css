@@ -22,6 +22,7 @@ html::selection {
   --breakpoint-xl: 1440px;
   --shadow-inner: -5px -5px 8px -2.5px rgb(0 0 0 /0.3) inset;
   --shadow-outer: 15px 15px 24px 0px rgb(0 0 0 /0.2);
+  --color-footer: oklch(0.32 0.04 295.87);
 }
 
 @theme inline {
