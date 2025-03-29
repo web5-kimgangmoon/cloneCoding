@@ -12,6 +12,7 @@ import { Menubar_r } from "./ui/menubar_r";
 import aos from "aos";
 import { Section7 } from "./ui/body_sections/section7";
 import { Section8 } from "./ui/body_sections/section8";
+import Footer from "./ui/footer";
 
 export default function Home() {
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function Home() {
     <div className="">
       <Header />
       <Menubar_r />
-      <div className="pt-[207px] sm:pt-[159px] xs:pt-[69px] min-h-screen">
+      <div className="sm:pt-[145px] lg:pt-[160px] pt-[97px] min-h-screen">
         <Section1 />
         <Section2 />
         <Section3 />
@@ -34,8 +35,7 @@ export default function Home() {
         <Section6 />
         <Section7 />
         <Section8 />
-        <div className="w-full h-[40rem] bg-red-300"></div>
-        <div className="w-full h-[40rem] bg-blue-300"></div>
+        <Footer />
       </div>
     </div>
   );

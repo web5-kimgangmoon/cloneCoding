@@ -90,15 +90,31 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 2. section5 골조 완성
 3. section5 슬라이드 처음 loop 떄 속도가 느려지는 현상, 추가적인 수정 필요.
 
-### 25/03/27
+#### 25/03/27
 
 1. section5 완성.
 2. section6 작성중.(whitespace-pre-line으로 공백과 줄바꿈 유지, 데이터 변경 필요)
 3. useEffect를 한번만 호출하기 위해, 커스텀훅 useInViewAnime_p_arr 신규 작성.
 
-### 25/03/28
+#### 25/03/28
 
 1. section6 완성.
 2. hotfix, inview 애니메이션 수정함.
 3. section7 완성(애니메이션, 슬라이드 없는 간단한 구조)
 4. section8 작성 진행중
+
+#### 25/03/29
+
+1. section8 작성 완료.
+2. footer 작성 완료.
+3. favicon, title 변경.
+
+## 결산
+
+1. 1주차 03/18~03/22(헤더, 사이드바, section1 작성완료, section2 작성 시작)
+2. 2주차 03/24~03/29(section3~section8, footer 작성완료)
+3. 총 12일(작업 진행한 날, 11일)
+
+## 느낀점
+
+클론코딩을 진행하면서 여러 이슈가 발생했고, 혼자서 코드를 작성했다면 써보지 않을 태그부터 라이브러리, css 속성들을 다양하게 쓸 수 있던 유익한 시간이었다. 다음에는 속도를 더 높여 일주일 내로 하나를 작성하는 수준에 도달했으면 좋겠다.
