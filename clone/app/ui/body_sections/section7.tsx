@@ -26,11 +26,12 @@ export function Section7() {
           </strong>
         </p>
         <Image
-          src={"/teacher.webp"}
+          //   src={"/teacher.webp"}
+          src={"/#"}
           alt="초상권 때문에 교체합니다"
           width={1542}
           height={603}
-          className={"w-full pt-10"}
+          className={clsx("w-full pt-10", "aspect-[12/5] bg-yellow-300")}
           style={{ objectFit: "contain", objectPosition: "center" }}
         />
       </div>
