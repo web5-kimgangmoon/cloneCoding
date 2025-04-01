@@ -111,8 +111,8 @@ next, framer-motion, swiper, react, tailwind, github, @heroicons/react
 
 ## 결산
 
-1. 1주차 03/18~03/22(헤더, 사이드바, section1 작성완료, section2 작성 시작)
-2. 2주차 03/24~03/29(section3~section8, footer 작성완료)
+1. 1주차 03/18~03/22 ( 헤더, 사이드바, section1 작성완료, section2 작성 시작 )
+2. 2주차 03/24\~03/29 ( section3\~section8, footer 작성완료 )
 3. 총 12일(작업 진행한 날, 11일)
 
 ## 느낀점
